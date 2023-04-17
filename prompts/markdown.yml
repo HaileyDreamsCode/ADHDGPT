@@ -1,0 +1,38 @@
+descriptor: markdown nested list
+examples:
+  generic: |1
+    - [ ] [Goal as specified by the user]
+      - [ ] [Composite step 1]
+        - [ ] [Substep 1]
+        - [ ] [Substep 2]
+      - [ ] [Composite step 2]
+        - [ ] [Substep 1]
+        - [ ] [Substep 2]
+      - [ ] [Composite step 3]
+        - [ ] [Substep 1]
+        - [ ] [Substep 2]
+  journaling:
+    good: |1
+      {
+        "initial_goal": "Develop an effective journaling habit.",
+
+        "top_level_steps": [
+          {"title": "Set a specific goal for your journaling habit. Folks commonly journal in order to keep themselves accountable to other goals, or to keep a record of what they have done or need to do.", "substeps": [
+            {"title": "Try multiple techniques to determine what works best for you.", "substeps": []},
+            {"title": "Choose a specific time of day and place to journal. You should ideally tie this to something you already do every day. For example, every time you shower go and do your journaling.", "substeps": []},
+          ]},
+          {"title": "Step 2", "substeps": []},
+        ]
+      }
+    bad: |1
+      {
+        "initial_goal": "develop an effective journaling habit.",
+
+        "top_level_steps": [
+          {"title": "set a specific goal for your journaling habit.", "substeps": [
+            {"title": "try multiple techniques to determine what works best for you.", "substeps": []},
+            {"title": "choose a specific time of day to journal.", "substeps": []},
+          ]},
+          {"title": "step 2", "substeps": []},
+        ]
+      }

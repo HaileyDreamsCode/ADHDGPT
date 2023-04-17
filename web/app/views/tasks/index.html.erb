@@ -1,0 +1,21 @@
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('#goal_form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const response = await fetch('/tasks', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ initial_goal: document.querySelector('#initial_goal').value })
+        });
+        const data = await response.json();
+        document.querySelector('#detailed_goals').innerHTML = data['generated_tasks_html'];
+        console.log(data);
+ }); });
+</script>
+
+<%= form_with id: "goal_form" do |form| %>
+    <%= form.text_field :initial_goal, placeholder: 'Type the thing you\'d like to do here' %>
+    <%= form.submit "Generate", id: "generate" %>
+<% end %>
+
+<div id="detailed_goals"></div>
