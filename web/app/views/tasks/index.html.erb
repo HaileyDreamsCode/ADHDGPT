@@ -1,16 +1,33 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('#goal_form').addEventListener('submit', async (event) => {
+    const submitButton = document.querySelector('#generate');
+    const form = document.querySelector('#goal_form');
+    const detailedGoals = document.querySelector('#detailed_goals');
+
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
+        submitButton.disabled = true;
+        detailedGoals.innerHTML = 'Loading...';
+
         const response = await fetch('/tasks', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ initial_goal: document.querySelector('#initial_goal').value })
+        }).then(async (response) => {
+            if (response.ok) {
+                const data = await response.json();
+                detailedGoals.innerHTML = data['generated_tasks_html'];
+                console.log(data);
+            } else {
+                detailedGoals.innerHTML = 'Something went wrong. Please try again later.';
+            }
+            submitButton.disabled = false;
+        },
+        (error) => {
+            detailedGoals.innerHTML = 'Something went wrong. Please try again later. Technical details: promise rejected.';
         });
-        const data = await response.json();
-        document.querySelector('#detailed_goals').innerHTML = data['generated_tasks_html'];
-        console.log(data);
- }); });
+ });
+});
 </script>
 
 <%= form_with id: "goal_form" do |form| %>

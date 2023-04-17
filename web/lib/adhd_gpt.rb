@@ -18,7 +18,7 @@ Below in quotes is the overall goal which you must decompose into smaller steps.
 Results:
 
 TEXT
-  
+
   def self.get_task_list(initial_goal, format: :markdown)
     if ENV['OPENAI_API_KEY'].blank?
       raise "Need a valid OpenAI key."
