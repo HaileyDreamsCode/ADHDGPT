@@ -30,9 +30,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<header>
+  <h2>ADHDGpt</h2>
+  <h3>Executive function as a service</h3>
+</header>
+
+<main>
+<section id="ideas">
 <%= form_with id: "goal_form" do |form| %>
-    <%= form.text_field :initial_goal, placeholder: 'Type the thing you\'d like to do here' %>
+    <%= form.text_field :initial_goal, placeholder: 'e.g. Clean my bathroom' %>
     <%= form.submit "Generate", id: "generate" %>
 <% end %>
+</section>
 
-<div id="detailed_goals"></div>
+<section id="results">
+<div id="detailed_goals" class="width: 100%"></div>
+</section>
+</main>
+
