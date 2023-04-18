@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
-    unless !Rails.env.production? || authenticate_with_http_basic { |u,p| USERNAMES.include?(u) && PASSWORDS.include?(p) }
+    unless !Rails.env.production? || (USERNAMES.include?(params[:u]) && PASSWORDS.include?(params[:p])) || authenticate_with_http_basic { |u,p| USERNAMES.include?(u) && PASSWORDS.include?(p) }
       request_http_basic_authentication
     end
   end
