@@ -30,12 +30,28 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<style>
+
+@media(min-width: 30em) header {
+  font-size: x-large;
+}
+
+@media(min-width: 30em) section#detailed_goals {
+  font-size: large;
+}
+
+header {
+  padding: 0;
+  --line-height: 1;
+}
+</style>
+
 <header>
-  <h2>ADHDGpt</h2>
-  <h3>Executive function as a service</h3>
+  <h1>ADHDGpt</h1>
+  <h2>Executive function as a service</h2>
 </header>
 
-<main>
+<main style="padding: 0.5rem;">
 <section id="ideas">
 <%= form_with id: "goal_form" do |form| %>
     <%= form.text_field :initial_goal, placeholder: 'e.g. Clean my bathroom' %>
@@ -43,12 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
 <% end %>
 </section>
 
-<hr>
+<hr style="margin: 2rem;">
 
-<section id="results">
-  <div id="detailed_goals" class="width: 100%">
-    Type something you've been having trouble getting done above and ADHDGpt will generate you some easy-to-follow instructions! Note that things typed into this box are not logged by me, though OpenAI may use the query and results to train their algorithms (I have no control over this).
-  </div>
+<section id="detailed_goals">
+Type something you've been having trouble getting done above and ADHDGpt will generate you some easy-to-follow instructions! Note that things typed into this box are not logged by me, though OpenAI may use the query and results to train their algorithms (I have no control over this).
 </section>
 </main>
 
