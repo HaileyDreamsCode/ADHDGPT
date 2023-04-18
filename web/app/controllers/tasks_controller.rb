@@ -10,6 +10,6 @@ class TasksController < ApplicationController
   def create
     detailed_goals = AdhdGpt.get_task_list(params[:initial_goal])
     @task = Task.new(goal: params[:initial_goal], generated_tasks: detailed_goals)
-    render json: @task.to_json(methods: :generated_tasks_html) if @task.save
+    render json: @task.to_json(methods: :generated_tasks_html)
   end
 end
