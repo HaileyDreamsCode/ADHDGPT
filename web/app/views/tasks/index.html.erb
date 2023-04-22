@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
         submitButton.disabled = true;
-        detailedGoals.innerHTML = 'Loading...';
+        detailedGoals.innerHTML = 'Loading... This will take a while. Probably 30 seconds to 2 minutes';
 
         const response = await fetch('/tasks', {
             method: 'POST',
