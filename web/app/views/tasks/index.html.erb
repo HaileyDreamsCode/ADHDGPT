@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitButton = document.querySelector('#generate');
     const form = document.querySelector('#goal_form');
     const detailedGoals = document.querySelector('#detailed_goals');
+    const markdownGoals = document.querySelector('#markdown');
+    const copyButton = document.querySelector("#copy");
+    
+    copyButton.addEventListener('click', async (event) => {
+      navigator.clipboard.writeText(markdownGoals.innerText);
+      copyButton.innerText = "Copied!";
+    });
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -17,6 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 const data = await response.json();
                 detailedGoals.innerHTML = data['generated_tasks_html'];
+                markdownGoals.innerText = data['generated_tasks'];
+
+                copyButton.disabled = false;
+                copyButton.innerText = "Copy results as Markdown";
                 console.log(data);
             } else {
                 detailedGoals.innerHTML = 'Something went wrong. Please try again later.';
@@ -61,8 +72,12 @@ header {
 
 <hr style="margin: 2rem;">
 
-<section id="detailed_goals">
+<section>
+<button disabled id="copy" value="Copy results to clipboard">Copy results as Markdown</button>
+<p id="detailed_goals">
 Type something you've been having trouble getting done above and ADHDGpt will generate you some easy-to-follow instructions! Note that things typed into this box are not logged by me, though OpenAI may use the query and results to train their algorithms (I have no control over this).
+</p>
 </section>
+<input type="text" id="markdown" style="display:none;"></input>
 </main>
 
